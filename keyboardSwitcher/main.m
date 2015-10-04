@@ -23,7 +23,6 @@ int main(int argc, const char * argv[]) {
         }
         
         [WLCommandLineInterpreter interpretArgumentsFromArray:arguments];
-        [WLCommandLineInterpreter interpretArgumentsFromArray:@[@"version"]];
     }
     return 0;
 }
