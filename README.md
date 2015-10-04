@@ -17,7 +17,7 @@ I intend to use this in combination with control plane (http://www.controlplanea
 
 ## Installation
 ```
-brew tap /Lutzifer/homebrew-tap
+brew tap lutzifer/homebrew-tap
 brew install keyboardSwitcher
 ```
 
