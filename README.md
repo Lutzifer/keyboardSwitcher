@@ -16,8 +16,10 @@ For the "select" command to successfully run, the keyboard layout needs to be ad
 I intend to use this in combination with control plane (http://www.controlplaneapp.com) to select the keyboard layout depending on whether my Bluetooth Keyboard is connected (-> US Layout) or not (-> German Layout).
 
 ## Installation
+```
 brew tap /Lutzifer/homebrew-tap
 brew install keyboardSwitcher
+```
 
 ## Examples:
 
