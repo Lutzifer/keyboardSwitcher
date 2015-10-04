@@ -1,7 +1,7 @@
 # keyboardSwitcher
 List, show and switch OSX Keyboard Layouts from the command line.
 
-A Tool to set the current KeyboardLayout
+A tool to set the current KeyboardLayout
 
 ## Available Commands:
 - list: list the available layouts
