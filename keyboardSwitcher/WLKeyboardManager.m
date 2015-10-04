@@ -39,7 +39,6 @@
     OSStatus status = TISSelectInputSource(source);
     if (status != noErr) {
         DLog(@"Failed to set the layout \"%@\".", layoutId);
-        DLog(@"Make sure the layout is selected in the Mac OS X Language Settings");
     };
 }
 
