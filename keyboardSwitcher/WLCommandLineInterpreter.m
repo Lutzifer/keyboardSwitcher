@@ -73,6 +73,11 @@
         NSString * layoutIdToSelect = layoutDictionary[layoutNameToSelect];
         if(layoutIdToSelect) {
             [WLKeyboardManager selectLayoutWithID:layoutIdToSelect];
+            
+            if(![[WLKeyboardManager currentKeyboardLayout] isEqualToString:layoutIdToSelect]) {
+                DLog(@"Layout \"%@\" known, but could not be set: Please add the layout in System Preferences.app > Keyboard > Input Sources to fix this.", layoutIdToSelect);
+            }
+            
         } else {
             DLog(@"Unknown Layout \"%@\": Did you forget to put the identifier in quotation marks?", layoutIdToSelect);
             [[self class] listAvailableLayouts];

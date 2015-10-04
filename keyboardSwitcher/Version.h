@@ -6,4 +6,4 @@
 //  Copyright © 2015 number42. All rights reserved.
 //
 
-#define KSVersion "0.0.1"
+#define KSVersion "0.0.3"
