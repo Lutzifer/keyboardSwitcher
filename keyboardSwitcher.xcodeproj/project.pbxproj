@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		930B31C11BC168A800C5AD86 /* WLKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 930B31C01BC168A800C5AD86 /* WLKeyboardManager.m */; settings = {ASSET_TAGS = (); }; };
+		930B31D71BC16CFD00C5AD86 /* WLCommandLineInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 930B31D61BC16CFD00C5AD86 /* WLCommandLineInterpreter.m */; settings = {ASSET_TAGS = (); }; };
 		9314DB8E1BB9D5BD0066C31B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9314DB8D1BB9D5BD0066C31B /* main.m */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +25,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		930B31BF1BC168A800C5AD86 /* WLKeyboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLKeyboardManager.h; sourceTree = "<group>"; };
+		930B31C01BC168A800C5AD86 /* WLKeyboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLKeyboardManager.m; sourceTree = "<group>"; };
+		930B31D51BC16CFD00C5AD86 /* WLCommandLineInterpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLCommandLineInterpreter.h; sourceTree = "<group>"; };
+		930B31D61BC16CFD00C5AD86 /* WLCommandLineInterpreter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLCommandLineInterpreter.m; sourceTree = "<group>"; };
+		930B31D81BC17CBF00C5AD86 /* DLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
+		930B31D91BC17D3300C5AD86 /* Version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Version.h; sourceTree = "<group>"; };
 		9314DB8A1BB9D5BD0066C31B /* keyboardSwitcher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = keyboardSwitcher; sourceTree = BUILT_PRODUCTS_DIR; };
 		9314DB8D1BB9D5BD0066C31B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +66,12 @@
 			isa = PBXGroup;
 			children = (
 				9314DB8D1BB9D5BD0066C31B /* main.m */,
+				930B31BF1BC168A800C5AD86 /* WLKeyboardManager.h */,
+				930B31C01BC168A800C5AD86 /* WLKeyboardManager.m */,
+				930B31D51BC16CFD00C5AD86 /* WLCommandLineInterpreter.h */,
+				930B31D61BC16CFD00C5AD86 /* WLCommandLineInterpreter.m */,
+				930B31D81BC17CBF00C5AD86 /* DLog.h */,
+				930B31D91BC17D3300C5AD86 /* Version.h */,
 			);
 			path = keyboardSwitcher;
 			sourceTree = "<group>";
@@ -118,6 +132,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				930B31C11BC168A800C5AD86 /* WLKeyboardManager.m in Sources */,
+				930B31D71BC16CFD00C5AD86 /* WLCommandLineInterpreter.m in Sources */,
 				9314DB8E1BB9D5BD0066C31B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,6 +251,7 @@
 				9314DB931BB9D5BD0066C31B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
