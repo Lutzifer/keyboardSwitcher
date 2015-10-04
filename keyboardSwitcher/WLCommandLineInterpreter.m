@@ -74,7 +74,7 @@
         if(layoutIdToSelect) {
             [WLKeyboardManager selectLayoutWithID:layoutIdToSelect];
             
-            if(![[WLKeyboardManager currentKeyboardLayout] isEqualToString:layoutIdToSelect]) {
+            if(![[WLKeyboardManager currentKeyboardLayout] isEqualToString:layoutNameToSelect]) {
                 DLog(@"Layout \"%@\" known, but could not be set: Please add the layout in System Preferences.app > Keyboard > Input Sources to fix this.", layoutIdToSelect);
             }
             
