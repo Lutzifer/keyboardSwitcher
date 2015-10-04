@@ -5,7 +5,7 @@ A tool to set the current KeyboardLayout
 
 ## Available Commands:
 - list: list the available layouts
-- select "<layout>": sets the layout
+- select "\<layout\>": sets the layout
 - get: get the current layout
 - version: print the version of KeyboardSwitcher
 	 
