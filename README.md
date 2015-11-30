@@ -27,6 +27,10 @@ Simply download the workflow available at https://github.com/Lutzifer/keyboardSw
 
 Use the "eng" and "ger" commands to quickly change the layout or define your own.
 
+## Use with ControlPlane
+
+See [https://github.com/Lutzifer/keyboardSwitcher/wiki/How-to-use-keyboardSwitcher-to-automatically-change-the-layout-when-a-bluetooth-keyboard-is-present](How to use keyboardSwitcher to automatically change the layout when a bluetooth keyboard is present)
+
 ## Examples
 
 keyboardSwitcher list
