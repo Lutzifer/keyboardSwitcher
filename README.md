@@ -21,6 +21,11 @@ brew tap lutzifer/homebrew-tap
 brew install keyboardSwitcher
 ```
 
+## Use with Alfred
+
+Simply download the workflow available at https://github.com/Lutzifer/keyboardSwitcher/releases/tag/0.0.4
+Use the "eng" and "ger" commands to quickly change the layout or define your own.
+
 ## Examples:
 
 keyboardSwitcher list
