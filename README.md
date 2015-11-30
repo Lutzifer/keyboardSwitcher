@@ -3,7 +3,7 @@ List, show and switch OSX Keyboard Layouts from the command line.
 
 A tool to set the current KeyboardLayout
 
-## Available Commands:
+## Available Commands
 - list: list the available layouts
 - select "\<layout\>": sets the layout
 - get: get the current layout
@@ -21,7 +21,13 @@ brew tap lutzifer/homebrew-tap
 brew install keyboardSwitcher
 ```
 
-## Examples:
+## Use with Alfred
+
+Simply download the workflow available at https://github.com/Lutzifer/keyboardSwitcher/releases/tag/0.0.4
+
+Use the "eng" and "ger" commands to quickly change the layout or define your own.
+
+## Examples
 
 keyboardSwitcher list
 
