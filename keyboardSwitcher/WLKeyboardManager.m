@@ -35,6 +35,12 @@
 
 + (void) selectLayoutWithID:(NSString *) layoutId {
     NSArray* sources = CFBridgingRelease(TISCreateInputSourceList((__bridge CFDictionaryRef)@{ (__bridge NSString*)kTISPropertyInputSourceID : layoutId }, FALSE));
+
+    if (sources.count == 0) {
+        NSString * shortLayoutId = [layoutId componentsSeparatedByString:@"."].lastObject;
+        sources = CFBridgingRelease(TISCreateInputSourceList((__bridge CFDictionaryRef)@{ (__bridge NSString*)kTISPropertyLocalizedName : shortLayoutId }, FALSE));
+    }
+
     TISInputSourceRef source = (__bridge TISInputSourceRef)sources[0];
     OSStatus status = TISSelectInputSource(source);
     if (status != noErr) {
