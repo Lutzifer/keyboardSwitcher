@@ -13,7 +13,7 @@ A tool to set the current KeyboardLayout
 For the "select" command to successfully run, the keyboard layout needs to be added in the OSX Settings app under Keyboard > Sources.
 
 ## Possible usages
-I intend to use this in combination with control plane (http://www.controlplaneapp.com) to select the keyboard layout depending on whether my Bluetooth Keyboard is connected (-> US Layout) or not (-> German Layout).
+I  use this in combination with control plane (http://www.controlplaneapp.com) to select the keyboard layout depending on whether my Bluetooth Keyboard is connected (-> US Layout) or not (-> German Layout) as well as via an Alfred workflow. For instructions on this, see below.
 
 ## Installation
 ```
@@ -26,6 +26,10 @@ brew install keyboardSwitcher
 Simply download the workflow available at https://github.com/Lutzifer/keyboardSwitcher/releases/tag/0.0.4
 
 Use the "eng" and "ger" commands to quickly change the layout or define your own.
+
+## Use with ControlPlane
+
+See [How to use keyboardSwitcher to automatically change the layout when a bluetooth keyboard is present](https://github.com/Lutzifer/keyboardSwitcher/wiki/How-to-use-keyboardSwitcher-to-automatically-change-the-layout-when-a-bluetooth-keyboard-is-present)
 
 ## Examples
 
