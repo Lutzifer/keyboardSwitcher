@@ -33,9 +33,10 @@ See [How to use keyboardSwitcher to automatically change the layout when a bluet
 
 ## Examples
 
-keyboardSwitcher list
+list: list the available layouts
 
 ```
+$ keyboardSwitcher list
 Available Layouts:
   	2-Set Korean
   	3-Set Korean
@@ -47,18 +48,16 @@ Available Layouts:
     (…)
 ```
 
-keyboardSwitcher select "German"
-
-keyboardSwitcher get
+select && get - sets && get the layout
 
 ```
+$ keyboardSwitcher select "German"
+$ keyboardSwitcher get
 German
 ```
 
-keyboardSwitcher select "U.S."
-
-keyboardSwitcher get
-
 ```
+$ keyboardSwitcher select "U.S."
+$ keyboardSwitcher get
 U.S.
 ```
