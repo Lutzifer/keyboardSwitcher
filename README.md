@@ -48,7 +48,7 @@ Available Layouts:
     (…)
 ```
 
-select && get - sets && get the layout
+Example how to set the layout and get the current layout
 
 ```
 $ keyboardSwitcher select "German"
