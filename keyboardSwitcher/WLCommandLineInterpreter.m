@@ -14,7 +14,7 @@
 @implementation WLCommandLineInterpreter
 
 + (void) interpretArgumentsFromArray: (NSArray<NSString *> *) argumentArray {
-    
+
     switch ([argumentArray count]) {
         case 0:
             [[self class] printHelp];
@@ -40,6 +40,7 @@
 + (void) printCommands {
     DLog(@"Available Commands:");
     DLog(@"\t - list: list the available layouts");
+    DLog(@"\t - enabled: list enabled layouts");
     DLog(@"\t - select \"<layout>\": sets the layout");
     DLog(@"\t - get: get the current layout");
     DLog(@"\t - version: print the version of KeyboardSwitcher");
@@ -53,6 +54,8 @@
 + (void) handleUnaryCommand:(NSString *) mainCommand {
     if([mainCommand isEqualToString:@"list"]) {
         [[self class] listAvailableLayouts];
+    } else if([mainCommand isEqualToString:@"enabled"]) {
+        [[self class] listEnabledLayouts];
     } else if([mainCommand isEqualToString:@"get"]) {
         DLog(@"%@", [WLKeyboardManager currentKeyboardLayout]);
     } else if([mainCommand isEqualToString:@"version"]) {
@@ -64,7 +67,7 @@
 
 + (void) handleBinaryCommand:(NSArray *) argumentArray {
     NSString * mainCommand = [argumentArray[0] lowercaseString];
-    
+
     if([mainCommand isEqualToString:@"select"]) {
         NSString * layoutNameToSelect = argumentArray[1];
         NSDictionary<NSString *, NSString *> * layoutDictionary = [WLKeyboardManager keyboardLayouts];
@@ -73,27 +76,60 @@
         NSString * layoutIdToSelect = layoutDictionary[layoutNameToSelect];
         if(layoutIdToSelect) {
             [WLKeyboardManager selectLayoutWithID:layoutIdToSelect];
-            
+
             if(![[WLKeyboardManager currentKeyboardLayout] isEqualToString:layoutNameToSelect]) {
                 DLog(@"Layout \"%@\" known, but could not be set: Please add the layout in System Preferences.app > Keyboard > Input Sources to fix this.", layoutIdToSelect);
             }
-            
+
         } else {
             DLog(@"Unknown Layout \"%@\": Did you forget to put the identifier in quotation marks?", layoutIdToSelect);
             [[self class] listAvailableLayouts];
         }
+    } else if([mainCommand isEqualToString:@"enabled"]) {
+        [[self class] printForAlfred];
     } else {
         [[self class] printCommandErrorForCommand:mainCommand];
     }
 }
 
 + (void) listAvailableLayouts {
-    NSArray<NSString *> * layouts = [[[WLKeyboardManager keyboardLayouts] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    
-    DLog(@"Available Layouts:");
-    [layouts enumerateObjectsUsingBlock:^(NSString * _Nonnull layout, NSUInteger idx, BOOL * _Nonnull stop) {
+    [self listLayouts:[WLKeyboardManager keyboardLayouts] withInfo:@"Available Layouts"];
+}
+
++ (void) listEnabledLayouts {
+    [self listLayouts:[WLKeyboardManager enabledLayouts] withInfo:@"Enabled Layouts:"];
+}
+
++ (void) listLayouts:(NSDictionary *)layouts withInfo:(NSString *)info {
+    NSArray<NSString *> *layoutsArray =
+        [[layouts allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    DLog(@"%@", info);
+    [layoutsArray enumerateObjectsUsingBlock:^(NSString *_Nonnull layout,
+                                               NSUInteger idx,
+                                               BOOL *_Nonnull stop) {
         DLog(@"\t%@", layout);
     }];
 }
+
++ (void) printForAlfred {
+    NSArray *layouts = [[[WLKeyboardManager enabledLayouts] allKeys]
+        sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    NSMutableArray *items = [NSMutableArray array];
+    for (NSString *name in layouts) {
+        NSDictionary *item = @{
+            @"title" : name,
+            @"arg" : name,
+        };
+        [items addObject:item];
+    }
+
+    NSDictionary *results = @{ @"items" : items };
+    NSData *data = [NSJSONSerialization dataWithJSONObject:results
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:nil];
+    NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [json writeToFile:@"/dev/stdout" atomically:NO encoding:NSUTF8StringEncoding error:nil];
+}
+
 
 @end

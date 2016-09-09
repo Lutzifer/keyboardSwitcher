@@ -11,22 +11,50 @@
 #import <Foundation/Foundation.h>
 @import Carbon;
 
+typedef BOOL(^SourcePredicateBlock)(TISInputSourceRef source);
+
 @implementation WLKeyboardManager
 
 + (NSDictionary *) keyboardLayouts {
-    NSDictionary *ref = @{ (NSString *)kTISPropertyInputSourceType : (NSString *)kTISTypeKeyboardLayout };
-    CFArrayRef sourceList = TISCreateInputSourceList ((__bridge CFDictionaryRef)(ref),true);
-    
-    NSMutableDictionary * layouts = [[NSMutableDictionary alloc]init];
-    
+    return [self sourcesWithPredicate:^BOOL(TISInputSourceRef source) {
+        return YES;
+    }];
+}
+
++ (NSDictionary *) enabledLayouts {
+    return [self sourcesWithPredicate:^BOOL(TISInputSourceRef source) {
+        return [self isSourceEnabled:source];
+    }];
+}
+
++ (NSDictionary *) sourcesWithPredicate:(SourcePredicateBlock)predicateBlock {
+    CFArrayRef sourceList = [[self class] sourceList];
+    NSMutableDictionary *layouts = [NSMutableDictionary dictionary];
     for (int i = 0; i < CFArrayGetCount(sourceList); ++i) {
         TISInputSourceRef source = (TISInputSourceRef)(CFArrayGetValueAtIndex(sourceList, i));
-        NSString* sourceID = (__bridge NSString *)(TISGetInputSourceProperty(source, kTISPropertyInputSourceID));
-        NSString* localizedName = (__bridge NSString *)(TISGetInputSourceProperty(source, kTISPropertyLocalizedName));
-        [layouts setObject:sourceID forKey:localizedName];
+        if (!predicateBlock(source)) continue;
+
+        [self appendSource:source toDict:layouts];
     }
-    
+
     return layouts;
+}
+
++ (CFArrayRef) sourceList {
+    NSDictionary *ref = @{ (NSString *)kTISPropertyInputSourceType : (NSString *)kTISTypeKeyboardLayout };
+    CFArrayRef sourceList = (TISCreateInputSourceList ((__bridge CFDictionaryRef)(ref),true));
+    return sourceList;
+}
+
++ (void) appendSource:(TISInputSourceRef)source toDict:(NSMutableDictionary *)layouts {
+    NSString* sourceID = (__bridge NSString *)(TISGetInputSourceProperty(source, kTISPropertyInputSourceID));
+    NSString* localizedName = (__bridge NSString *)(TISGetInputSourceProperty(source, kTISPropertyLocalizedName));
+    [layouts setObject:sourceID forKey:localizedName];
+}
+
++ (BOOL) isSourceEnabled:(TISInputSourceRef)source {
+    NSNumber *enabled = (__bridge NSNumber *)(TISGetInputSourceProperty(source, kTISPropertyInputSourceIsEnabled));
+    return enabled.boolValue;
 }
 
 + (NSString *) currentKeyboardLayout {

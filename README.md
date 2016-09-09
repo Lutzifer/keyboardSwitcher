@@ -5,10 +5,11 @@ A tool to set the current KeyboardLayout
 
 ## Available Commands
 - list: list the available layouts
+- enabled: list enabled layouts (the ones you include in System Preferences)
 - select "\<layout\>": sets the layout
 - get: get the current layout
 - version: print the version of KeyboardSwitcher
-	 
+
 ## Limitations
 For the "select" command to successfully run, the keyboard layout needs to be added in the OSX Settings app under Keyboard > Sources.
 
@@ -48,6 +49,15 @@ Available Layouts:
     (…)
 ```
 
+enabled: list enabled layouts
+
+```
+$ keyboardSwitcher enabled
+Enabled Layouts:
+        Colemak
+        Turkish - QWERTY PC
+        U.S.
+```
 select: set the layout
 
 get: get the current layout
