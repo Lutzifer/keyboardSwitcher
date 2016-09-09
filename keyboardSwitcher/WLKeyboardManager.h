@@ -11,6 +11,7 @@
 @interface WLKeyboardManager : NSObject
 
 + (NSDictionary *) keyboardLayouts;
++ (NSDictionary *) enabledLayouts;
 + (NSString *) currentKeyboardLayout;
 + (void) selectLayoutWithID:(NSString *) layoutId;
 
