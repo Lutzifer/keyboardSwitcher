@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WLKeyboardSource.h"
 
 @interface WLKeyboardManager : NSObject
 
-+ (NSDictionary *) keyboardLayouts;
-+ (NSDictionary *) enabledLayouts;
-+ (NSString *) currentKeyboardLayout;
-+ (void) selectLayoutWithID:(NSString *) layoutId;
++ (instancetype) sharedManager;
+- (NSArray<WLKeyboardSource *> *) keyboardLayouts;
+- (NSArray<WLKeyboardSource *> *) enabledLayouts;
+- (WLKeyboardSource *) currentKeyboardLayout;
+- (void) selectLayoutWithID:(NSString *) layoutId;
 
 @end

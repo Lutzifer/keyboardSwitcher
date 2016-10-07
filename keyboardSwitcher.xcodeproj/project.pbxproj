@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		930B31C11BC168A800C5AD86 /* WLKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 930B31C01BC168A800C5AD86 /* WLKeyboardManager.m */; settings = {ASSET_TAGS = (); }; };
-		930B31D71BC16CFD00C5AD86 /* WLCommandLineInterpreter.m in Sources */ = {isa = PBXBuildFile; fileRef = 930B31D61BC16CFD00C5AD86 /* WLCommandLineInterpreter.m */; settings = {ASSET_TAGS = (); }; };
-		9314DB8E1BB9D5BD0066C31B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9314DB8D1BB9D5BD0066C31B /* main.m */; };
+		844F24041DA840A800E693C8 /* CommandCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F24031DA840A800E693C8 /* CommandCenter.swift */; };
+		844F24061DA840B700E693C8 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844F24051DA840B700E693C8 /* Option.swift */; };
+		844F240A1DA84F1100E693C8 /* WLKeyboardSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 844F24091DA84F1100E693C8 /* WLKeyboardSource.m */; };
+		84AB299F1D98369500260363 /* CommandLineInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB299E1D98369500260363 /* CommandLineInterpreter.swift */; };
+		84AB29A11D98376700260363 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AB29A01D98376700260363 /* main.swift */; };
+		84AB29A21D9859EB00260363 /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 930B31D91BC17D3300C5AD86 /* Version.swift */; };
+		930B31C11BC168A800C5AD86 /* WLKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 930B31C01BC168A800C5AD86 /* WLKeyboardManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,14 +29,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		844F24011DA8406A00E693C8 /* DLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
+		844F24031DA840A800E693C8 /* CommandCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandCenter.swift; sourceTree = "<group>"; };
+		844F24051DA840B700E693C8 /* Option.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
+		844F24081DA84F1100E693C8 /* WLKeyboardSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLKeyboardSource.h; sourceTree = "<group>"; };
+		844F24091DA84F1100E693C8 /* WLKeyboardSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLKeyboardSource.m; sourceTree = "<group>"; };
+		84AB299D1D98369400260363 /* keyboardSwitcher-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "keyboardSwitcher-Bridging-Header.h"; sourceTree = "<group>"; };
+		84AB299E1D98369500260363 /* CommandLineInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandLineInterpreter.swift; sourceTree = "<group>"; };
+		84AB29A01D98376700260363 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		930B31BF1BC168A800C5AD86 /* WLKeyboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLKeyboardManager.h; sourceTree = "<group>"; };
 		930B31C01BC168A800C5AD86 /* WLKeyboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLKeyboardManager.m; sourceTree = "<group>"; };
-		930B31D51BC16CFD00C5AD86 /* WLCommandLineInterpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WLCommandLineInterpreter.h; sourceTree = "<group>"; };
-		930B31D61BC16CFD00C5AD86 /* WLCommandLineInterpreter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WLCommandLineInterpreter.m; sourceTree = "<group>"; };
-		930B31D81BC17CBF00C5AD86 /* DLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
-		930B31D91BC17D3300C5AD86 /* Version.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Version.h; sourceTree = "<group>"; };
+		930B31D91BC17D3300C5AD86 /* Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		9314DB8A1BB9D5BD0066C31B /* keyboardSwitcher */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = keyboardSwitcher; sourceTree = BUILT_PRODUCTS_DIR; };
-		9314DB8D1BB9D5BD0066C31B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +54,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		844F24021DA8407700E693C8 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				84AB299D1D98369400260363 /* keyboardSwitcher-Bridging-Header.h */,
+				844F24011DA8406A00E693C8 /* DLog.h */,
+				930B31BF1BC168A800C5AD86 /* WLKeyboardManager.h */,
+				930B31C01BC168A800C5AD86 /* WLKeyboardManager.m */,
+				844F24081DA84F1100E693C8 /* WLKeyboardSource.h */,
+				844F24091DA84F1100E693C8 /* WLKeyboardSource.m */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		844F24071DA840F600E693C8 /* CLI */ = {
+			isa = PBXGroup;
+			children = (
+				84AB299E1D98369500260363 /* CommandLineInterpreter.swift */,
+				844F24031DA840A800E693C8 /* CommandCenter.swift */,
+				844F24051DA840B700E693C8 /* Option.swift */,
+			);
+			name = CLI;
+			sourceTree = "<group>";
+		};
 		9314DB811BB9D5BD0066C31B = {
 			isa = PBXGroup;
 			children = (
@@ -65,13 +96,10 @@
 		9314DB8C1BB9D5BD0066C31B /* keyboardSwitcher */ = {
 			isa = PBXGroup;
 			children = (
-				9314DB8D1BB9D5BD0066C31B /* main.m */,
-				930B31BF1BC168A800C5AD86 /* WLKeyboardManager.h */,
-				930B31C01BC168A800C5AD86 /* WLKeyboardManager.m */,
-				930B31D51BC16CFD00C5AD86 /* WLCommandLineInterpreter.h */,
-				930B31D61BC16CFD00C5AD86 /* WLCommandLineInterpreter.m */,
-				930B31D81BC17CBF00C5AD86 /* DLog.h */,
-				930B31D91BC17D3300C5AD86 /* Version.h */,
+				844F24071DA840F600E693C8 /* CLI */,
+				844F24021DA8407700E693C8 /* Core */,
+				930B31D91BC17D3300C5AD86 /* Version.swift */,
+				84AB29A01D98376700260363 /* main.swift */,
 			);
 			path = keyboardSwitcher;
 			sourceTree = "<group>";
@@ -102,11 +130,12 @@
 		9314DB821BB9D5BD0066C31B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = number42;
 				TargetAttributes = {
 					9314DB891BB9D5BD0066C31B = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -133,8 +162,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				930B31C11BC168A800C5AD86 /* WLKeyboardManager.m in Sources */,
-				930B31D71BC16CFD00C5AD86 /* WLCommandLineInterpreter.m in Sources */,
-				9314DB8E1BB9D5BD0066C31B /* main.m in Sources */,
+				84AB29A21D9859EB00260363 /* Version.swift in Sources */,
+				84AB29A11D98376700260363 /* main.swift in Sources */,
+				84AB299F1D98369500260363 /* CommandLineInterpreter.swift in Sources */,
+				844F240A1DA84F1100E693C8 /* WLKeyboardSource.m in Sources */,
+				844F24061DA840B700E693C8 /* Option.swift in Sources */,
+				844F24041DA840A800E693C8 /* CommandCenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,8 +187,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -196,8 +231,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -215,20 +252,30 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
 		9314DB921BB9D5BD0066C31B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "keyboardSwitcher/keyboardSwitcher-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		9314DB931BB9D5BD0066C31B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "keyboardSwitcher/keyboardSwitcher-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
