@@ -76,7 +76,7 @@ typedef BOOL(^SourcePredicateBlock)(WLKeyboardSource * source);
 
 - (NSArray<WLKeyboardSource *> *) keyboardSourcesForDictionary:(NSDictionary *) dictionary {
     NSMutableArray<WLKeyboardSource *> * sources = [NSMutableArray<WLKeyboardSource *> new];
-    NSArray * sourceList = (__bridge NSArray*)(TISCreateInputSourceList ((__bridge CFDictionaryRef)(dictionary),true));
+    NSArray * sourceList = (__bridge NSArray*)(TISCreateInputSourceList ((__bridge CFDictionaryRef)(dictionary),false));
     
     [sourceList enumerateObjectsUsingBlock:^(id  _Nonnull sourceObject, NSUInteger idx, BOOL * _Nonnull stop) {
         [sources addObject:[[WLKeyboardSource alloc] initWithSource:(__bridge TISInputSourceRef)sourceObject]];
