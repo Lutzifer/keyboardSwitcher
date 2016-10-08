@@ -48,16 +48,17 @@ class CommandCenter {
     
     func printJSON(){
         let enabledLayouts = WLKeyboardManager.shared().enabledLayouts()
-        var array = [[String : String]]()
+        let array = enabledLayouts?.map {
+            return ["title" : $0.localizedName!, "arg" : $0.localizedName!]
+        }
         
-        enabledLayouts?.forEach({ layout in
-            array.append([ "title" : layout.localizedName,
-                           "arg" : layout.localizedName])
-        })
-        
-        let jsonData = try? JSONSerialization.data(withJSONObject: array, options: .prettyPrinted)
-        if let data = jsonData {
-            print(String(data: data, encoding: String.Encoding.utf8)!)
+        if let array = array {
+            let jsonData = try? JSONSerialization.data(withJSONObject: array, options: .prettyPrinted)
+            
+            if let data = jsonData,
+               let jsonString = String(data: data, encoding: String.Encoding.utf8) {
+                print(jsonString)
+            }
         }
     }
 }
