@@ -7,31 +7,31 @@
 //
 
 class CommandCenter {
-    func printLayout(){
+    func printLayout() {
         print(WLKeyboardManager.shared().currentKeyboardLayout().localizedName)
     }
-    
-    func listLayouts(){
+
+    func listLayouts() {
         print("Available Layouts:")
         self.printLayouts(layouts: WLKeyboardManager.shared().keyboardLayouts())
     }
-    
-    func listEnabled(){
+
+    func listEnabled() {
         print("Enabled Layouts:")
         self.printLayouts(layouts: WLKeyboardManager.shared().enabledLayouts())
     }
-    
-    internal func printLayouts(layouts: Array<WLKeyboardSource>){
-        layouts.flatMap{ $0.localizedName }.sorted {$0 < $1 }.forEach { name in
+
+    internal func printLayouts(layouts: Array<WLKeyboardSource>) {
+        layouts.flatMap { $0.localizedName }.sorted {$0 < $1 }.forEach { name in
             print("\t\(name)")
         }
     }
-    
+
     func selectLayout(layout: String) {
         print("Selecting \(layout)")
-        
+
         let enabledLayouts = WLKeyboardManager.shared().enabledLayouts()
-        
+
         var found = false
         enabledLayouts!.forEach { (keyboardSource: WLKeyboardSource) in
             if keyboardSource.localizedName == layout {
@@ -40,21 +40,21 @@ class CommandCenter {
                 found = true
             }
         }
-        
+
         if !found {
             print("not found")
         }
     }
-    
-    func printJSON(){
+
+    func printJSON() {
         let enabledLayouts = WLKeyboardManager.shared().enabledLayouts()
         let array = enabledLayouts?.map {
             return ["title" : $0.localizedName!, "arg" : $0.localizedName!]
         }
-        
+
         if let array = array {
             let jsonData = try? JSONSerialization.data(withJSONObject: array, options: .prettyPrinted)
-            
+
             if let data = jsonData,
                let jsonString = String(data: data, encoding: String.Encoding.utf8) {
                 print(jsonString)

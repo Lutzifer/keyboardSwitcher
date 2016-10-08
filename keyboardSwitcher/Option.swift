@@ -14,7 +14,7 @@ enum CommandLineOption {
     case get
     case select(layout: String?)
     case json
-    
+
     var command: String {
         get {
             switch self {
@@ -35,7 +35,7 @@ enum CommandLineOption {
             }
         }
     }
-    
+
     var helptext: String {
         get {
             switch self {
@@ -56,7 +56,7 @@ enum CommandLineOption {
             }
         }
     }
-    
+
     func run() {
         switch self {
         case .list:
@@ -81,7 +81,7 @@ enum CommandLineOption {
             CommandCenter().printLayout()
         }
     }
-    
+
     static func allCommandLineOptions() -> [CommandLineOption] {
         return [CommandLineOption.list,
                 CommandLineOption.enabled,
