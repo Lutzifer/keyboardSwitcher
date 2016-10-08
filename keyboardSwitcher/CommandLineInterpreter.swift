@@ -20,6 +20,8 @@ class CommandLineInterpreter {
                 CommandLineOption.version.run()
             case CommandLineOption.get.command:
                 CommandLineOption.get.run()
+            case CommandLineOption.json.command:
+                CommandLineOption.json.run()
             case CommandLineOption.help.command:
                 CommandLineOption.help.run()
             case CommandLineOption.select(layout: nil).command:

@@ -72,8 +72,7 @@ enum CommandLineOption {
                 print("\t\(option.command): \(option.helptext)")
             }
         case .json:
-            // todo!
-            print("todo")
+            CommandCenter().printJSON()
         case .select(let layout):
             if let layout = layout {
                 CommandCenter().selectLayout(layout: layout)
