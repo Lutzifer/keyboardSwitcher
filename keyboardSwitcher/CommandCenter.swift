@@ -53,7 +53,8 @@ class CommandCenter {
         }
 
         if let array = array {
-            let jsonData = try? JSONSerialization.data(withJSONObject: array, options: .prettyPrinted)
+            let jsonData = try? JSONSerialization.data(withJSONObject: array,
+                                                       options: .prettyPrinted)
 
             if let data = jsonData,
                let jsonString = String(data: data, encoding: String.Encoding.utf8) {
