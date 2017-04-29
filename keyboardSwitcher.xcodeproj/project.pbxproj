@@ -57,31 +57,33 @@
 		844F24021DA8407700E693C8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				84AB299D1D98369400260363 /* keyboardSwitcher-Bridging-Header.h */,
 				844F24011DA8406A00E693C8 /* DLog.h */,
 				930B31BF1BC168A800C5AD86 /* WLKeyboardManager.h */,
 				930B31C01BC168A800C5AD86 /* WLKeyboardManager.m */,
 				844F24081DA84F1100E693C8 /* WLKeyboardSource.h */,
 				844F24091DA84F1100E693C8 /* WLKeyboardSource.m */,
+				84AB299D1D98369400260363 /* keyboardSwitcher-Bridging-Header.h */,
 			);
 			name = Core;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		844F24071DA840F600E693C8 /* CLI */ = {
 			isa = PBXGroup;
 			children = (
-				84AB299E1D98369500260363 /* CommandLineInterpreter.swift */,
 				844F24031DA840A800E693C8 /* CommandCenter.swift */,
+				84AB299E1D98369500260363 /* CommandLineInterpreter.swift */,
 				844F24051DA840B700E693C8 /* Option.swift */,
 			);
 			name = CLI;
+			path = CLI;
 			sourceTree = "<group>";
 		};
 		9314DB811BB9D5BD0066C31B = {
 			isa = PBXGroup;
 			children = (
-				9314DB8C1BB9D5BD0066C31B /* keyboardSwitcher */,
 				9314DB8B1BB9D5BD0066C31B /* Products */,
+				9314DB8C1BB9D5BD0066C31B /* keyboardSwitcher */,
 			);
 			sourceTree = "<group>";
 		};
