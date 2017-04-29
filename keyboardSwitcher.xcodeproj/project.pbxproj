@@ -64,7 +64,6 @@
 				844F24091DA84F1100E693C8 /* WLKeyboardSource.m */,
 				84AB299D1D98369400260363 /* keyboardSwitcher-Bridging-Header.h */,
 			);
-			name = Core;
 			path = Core;
 			sourceTree = "<group>";
 		};
@@ -75,7 +74,6 @@
 				84AB299E1D98369500260363 /* CommandLineInterpreter.swift */,
 				844F24051DA840B700E693C8 /* Option.swift */,
 			);
-			name = CLI;
 			path = CLI;
 			sourceTree = "<group>";
 		};
@@ -297,7 +295,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "keyboardSwitcher/keyboardSwitcher-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "keyboardSwitcher/Core/keyboardSwitcher-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -309,7 +307,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "keyboardSwitcher/keyboardSwitcher-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "keyboardSwitcher/Core/keyboardSwitcher-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
