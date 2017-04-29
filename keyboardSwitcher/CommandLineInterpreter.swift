@@ -7,7 +7,7 @@
 //
 
 class CommandLineInterpreter {
-    func interpret(arguments: Array<String>) {
+    func interpret(arguments: [String]) {
         switch arguments.count {
         case 2:
             self.interpretTwoArguments(arguments: arguments)
@@ -18,7 +18,7 @@ class CommandLineInterpreter {
         }
     }
 
-    internal func interpretTwoArguments(arguments: Array<String>) {
+    internal func interpretTwoArguments(arguments: [String]) {
         let command = arguments[1]
         switch command {
         case CommandLineOption.list.command:
@@ -42,7 +42,7 @@ class CommandLineInterpreter {
         }
     }
 
-    internal func interpretThreeArguments(arguments: Array<String>) {
+    internal func interpretThreeArguments(arguments: [String]) {
         let command = arguments[1]
         let value = arguments[2]
         if command == CommandLineOption.select(layout: nil).command {

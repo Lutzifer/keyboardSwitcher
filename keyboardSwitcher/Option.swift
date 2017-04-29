@@ -16,28 +16,25 @@ enum CommandLineOption {
     case json
 
     var command: String {
-        get {
-            switch self {
-            case .list:
-                return "list"
-            case .enabled:
-                return "enabled"
-            case .version:
-                return "version"
-            case .help:
-                return "help"
-            case .get:
-                return "get"
-            case .select:
-                return "select"
-            case .json:
-                return "json"
-            }
-        }
+       switch self {
+       case .list:
+           return "list"
+       case .enabled:
+           return "enabled"
+       case .version:
+           return "version"
+       case .help:
+           return "help"
+       case .get:
+           return "get"
+       case .select:
+           return "select"
+       case .json:
+           return "json"
+       }
     }
 
     var helptext: String {
-        get {
             switch self {
             case .list:
                 return "list the available layouts"
@@ -54,7 +51,6 @@ enum CommandLineOption {
             case .json:
                 return "list enabled layouts as alfred compatible json"
             }
-        }
     }
 
     func run() {

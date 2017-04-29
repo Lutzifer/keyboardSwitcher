@@ -21,7 +21,7 @@ class CommandCenter {
         self.printLayouts(layouts: WLKeyboardManager.shared().enabledLayouts())
     }
 
-    internal func printLayouts(layouts: Array<WLKeyboardSource>) {
+    internal func printLayouts(layouts: [WLKeyboardSource]) {
         layouts.flatMap { $0.localizedName }.sorted {$0 < $1 }.forEach { name in
             print("\t\(name)")
         }
@@ -49,7 +49,7 @@ class CommandCenter {
     func printJSON() {
         let enabledLayouts = WLKeyboardManager.shared().enabledLayouts()
         let array = enabledLayouts?.map {
-            return ["title" : $0.localizedName!, "arg" : $0.localizedName!]
+            return ["title": $0.localizedName!, "arg": $0.localizedName!]
         }
 
         if let array = array {
