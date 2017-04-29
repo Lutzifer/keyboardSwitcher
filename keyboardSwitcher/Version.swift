@@ -6,4 +6,4 @@
 //  Copyright © 2015 Wolfgang Lutz. All rights reserved.
 //
 
-let keyboardSwitcherVersion = "1.0.0"
+let keyboardSwitcherVersion = "1.0.1"
