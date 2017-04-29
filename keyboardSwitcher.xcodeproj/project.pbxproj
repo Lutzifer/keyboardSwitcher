@@ -111,6 +111,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9314DB911BB9D5BD0066C31B /* Build configuration list for PBXNativeTarget "keyboardSwitcher" */;
 			buildPhases = (
+				84BC13C81EB4F4150078533E /* Swiftlint */,
 				9314DB861BB9D5BD0066C31B /* Sources */,
 				9314DB871BB9D5BD0066C31B /* Frameworks */,
 				9314DB881BB9D5BD0066C31B /* CopyFiles */,
@@ -155,6 +156,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		84BC13C81EB4F4150078533E /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9314DB861BB9D5BD0066C31B /* Sources */ = {
