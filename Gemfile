@@ -1,0 +1,2 @@
+gem "synx"
+gem "fastlane"
