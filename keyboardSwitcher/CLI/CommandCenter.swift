@@ -8,7 +8,7 @@
 
 class CommandCenter {
 	func printLayout() {
-		print(WLKeyboardManager.shared().currentKeyboardLayout().localizedName)
+		print(WLKeyboardManager.shared().currentKeyboardLayout().localizedName ?? "Unknown")
 	}
 
 	func listLayouts() {
@@ -22,8 +22,11 @@ class CommandCenter {
 	}
 
 	internal func printLayouts(layouts: [WLKeyboardSource]) {
-		layouts.flatMap { $0.localizedName }.sorted { $0 < $1 }.forEach { name in
-			print("\t\(name)")
+		layouts.compactMap { $0.localizedName }
+            .sorted { $0 < $1 }
+            .forEach { name in
+                print("\t\(name)"
+            )
 		}
 	}
 
