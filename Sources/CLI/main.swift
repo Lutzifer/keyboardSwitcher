@@ -1,1 +1,4 @@
-CommandLineInterpreter().interpret(arguments: CommandLine.arguments)
+CommandLineInterpreter()
+    .interpret(
+        arguments: CommandLine.arguments
+    )

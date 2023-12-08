@@ -1,81 +1,69 @@
 enum CommandLineOption {
-	case list
-	case enabled
-	case version
-	case help
-	case get
-	case select(layout: String?)
-	case json
+    case list
+    case enabled
+    case version
+    case help
+    case get
+    case select(layout: String?)
+    case json
 
-	var command: String {
-		switch self {
-		case .list:
-			return "list"
-		case .enabled:
-			return "enabled"
-		case .version:
-			return "version"
-		case .help:
-			return "help"
-		case .get:
-			return "get"
-		case .select:
-			return "select"
-		case .json:
-			return "json"
-		}
-	}
+    var command: String {
+        switch self {
+        case .select:
+            "select"
+        default:
+            String(describing: self).lowercased()
+        }
+        
+    }
 
-	var helptext: String {
-		switch self {
-		case .list:
-			return "list the available layouts"
-		case .enabled:
-			return "list enabled layouts"
-		case .version:
-			return "print the version of KeyboardSwitcher"
-		case .help:
-			return "prints this help"
-		case .get:
-			return "get the current layout"
-		case .select:
-			return "sets the layout. Arguments: <layout name>"
-		case .json:
-			return "list enabled layouts as alfred compatible json"
-		}
-	}
+    var helptext: String {
+        return switch self {
+        case .list:
+            "List the available layouts"
+        case .enabled:
+            "List enabled layouts"
+        case .version:
+            "Print the version of KeyboardSwitcher"
+        case .help:
+            "Print this help"
+        case .get:
+            "Get the current layout"
+        case .select:
+            "Set the layout. Arguments: <layout name>"
+        case .json:
+            "List enabled layouts as Alfred-compatible JSON"
+        }
+    }
 
-	func run() {
-		switch self {
-		case .list:
-			CommandCenter().listLayouts()
-		case .enabled:
-			CommandCenter().listEnabled()
-		case .version:
-			print("Current Version: \(keyboardSwitcherVersion)")
-		case .help:
-			print("A Tool to set the KeyboardLayout")
-			print("Available Commands:")
-			CommandLineOption.allCommandLineOptions().forEach { option in
-				print("\t\(option.command): \(option.helptext)")
-			}
-		case .json:
-			CommandCenter().printJSON()
-		case .select(let layout):
-			if let layout = layout {
-				CommandCenter().selectLayout(layout: layout)
-			}
-		case .get:
-			CommandCenter().printLayout()
-		}
-	}
+    func run() {
+        let commandCenter = CommandCenter()
 
-	static func allCommandLineOptions() -> [CommandLineOption] {
-		return [CommandLineOption.list,
-			CommandLineOption.enabled,
-			CommandLineOption.version,
-			CommandLineOption.help,
-			CommandLineOption.select(layout: nil),
-			CommandLineOption.json]
-	}
+        switch self {
+        case .list:
+            commandCenter.listLayouts()
+        case .enabled:
+            commandCenter.listEnabled()
+        case .version:
+            print("Current Version: \(keyboardSwitcherVersion)")
+        case .help:
+            print("A tool to set the KeyboardLayout")
+            print("Available Commands:")
+            CommandLineOption.all.forEach { option in
+                print("\t\(option.command): \(option.helptext)")
+            }
+        case .json:
+            commandCenter.printJSON()
+        case .select(let layout):
+            if let layout = layout {
+                commandCenter.selectLayout(layout: layout)
+            }
+        case .get:
+            commandCenter.printLayout()
+        }
+    }
+
+    static var all: [CommandLineOption] {
+        [.list, .enabled, .version, .help, .select(layout: nil), .json]
+    }
 }

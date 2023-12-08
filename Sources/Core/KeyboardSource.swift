@@ -1,7 +1,19 @@
 import Foundation
 import InputMethodKit
 
-class KeyboardSource {
+struct KeyboardSource: Encodable {
+    enum CodingKeys: String, CodingKey {
+        case title
+        case arg
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(localizedName, forKey: .title)
+        try container.encode(localizedName, forKey: .arg)
+    }
+    
     let source: TISInputSource
 
     init(source: TISInputSource) {
