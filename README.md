@@ -1,43 +1,52 @@
 # keyboardSwitcher
-List, show and switch OSX Keyboard Layouts from the command line.
 
-A tool to set the current KeyboardLayout
+`keyboardSwitcher` is a command-line tool designed for macOS that allows you to list, show, and switch between different keyboard layouts effortlessly.
 
 ## Available Commands
-- list: list the available layouts
-- enabled: list enabled layouts (the ones you include in System Preferences)
-- select "\<layout\>": sets the layout
-- get: get the current layout
-- version: print the version of KeyboardSwitcher
+
+- **list:** List all available keyboard layouts.
+- **enabled:** List enabled layouts (those configured in System Preferences).
+- **select "\<layout\>:** Set the current keyboard layout.
+- **get:** Retrieve the currently active keyboard layout.
+- **version:** Print the version of `keyboardSwitcher`.
 
 ## Limitations
-For the "select" command to successfully run, the keyboard layout needs to be added in the OSX Settings app under Keyboard > Sources.
 
-## Possible usages
-I  use this in combination with control plane (http://www.controlplaneapp.com) to select the keyboard layout depending on whether my Bluetooth Keyboard is connected (-> US Layout) or not (-> German Layout) as well as via an Alfred workflow. For instructions on this, see below.
+To successfully execute the "select" command, the desired keyboard layout must be added in the macOS Settings app under Keyboard > Sources.
+
+## Possible Usages
+
+Many users find `keyboardSwitcher` beneficial in conjunction with third-party tools such as KeyboardMaestro or via Alfred workflows. For example, you can dynamically switch the keyboard layout based on the connection status of a Bluetooth keyboard or use an Alfred workflow for quick layout changes.
 
 ## Installation
+
+### Using [Homebrew](http://brew.sh/):
+
+```bash
+brew install lutzifer/homebrew-tap/keyboardSwitcher
 ```
-brew tap lutzifer/homebrew-tap
-brew install keyboardSwitcher
+
+### Using [Mint](https://github.com/yonaskolb/mint):
+
+```bash
+mint install lutzifer/keyboardSwitcher
 ```
 
 ## Use with Alfred
 
-Simply download the workflow available at https://github.com/Lutzifer/keyboardSwitcher/releases/tag/0.0.4
-
-Use the "eng" and "ger" commands to quickly change the layout or define your own.
-
-## Use with ControlPlane
-
-See [How to use keyboardSwitcher to automatically change the layout when a bluetooth keyboard is present](https://github.com/Lutzifer/keyboardSwitcher/wiki/How-to-use-keyboardSwitcher-to-automatically-change-the-layout-when-a-bluetooth-keyboard-is-present)
+Download the Alfred workflow from the [releases page](https://github.com/Lutzifer/keyboardSwitcher/releases/tag/0.0.4) and use commands like "eng" and "ger" to swiftly change the keyboard layout.
 
 ## Examples
 
-list: list the available layouts
+### List Available Layouts
 
+```bash
+keyboardSwitcher list
 ```
-$ keyboardSwitcher list
+
+Output:
+
+```plaintext
 Available Layouts:
   	2-Set Korean
   	3-Set Korean
@@ -49,27 +58,43 @@ Available Layouts:
     (…)
 ```
 
-enabled: list enabled layouts
+### List Enabled Layouts
 
+```bash
+keyboardSwitcher enabled
 ```
-$ keyboardSwitcher enabled
+
+Output:
+
+```plaintext
 Enabled Layouts:
         Colemak
         Turkish - QWERTY PC
         U.S.
 ```
-select: set the layout
 
-get: get the current layout
+### Set and Get Current Layout
 
+```bash
+keyboardSwitcher select "German"
+keyboardSwitcher get
 ```
-$ keyboardSwitcher select "German"
-$ keyboardSwitcher get
+
+Output:
+
+```plaintext
 German
 ```
 
+```bash
+keyboardSwitcher select "U.S."
+keyboardSwitcher get
 ```
-$ keyboardSwitcher select "U.S."
-$ keyboardSwitcher get
+
+Output:
+
+```plaintext
 U.S.
 ```
+
+Feel free to explore the various commands to manage your keyboard layouts efficiently.
