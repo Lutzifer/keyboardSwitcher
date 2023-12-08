@@ -1,11 +1,3 @@
-//
-//  CommandLineInterpreter.swift
-//  keyboardSwitcher
-//
-//  Created by Wolfgang Lutz on 25.09.16.
-//  Copyright © 2016 Wolfgang Lutz. All rights reserved.
-//
-
 class CommandLineInterpreter {
 	func interpret(arguments: [String]) {
 		switch arguments.count {
@@ -45,6 +37,7 @@ class CommandLineInterpreter {
 	internal func interpretThreeArguments(arguments: [String]) {
 		let command = arguments[1]
 		let value = arguments[2]
+        
 		if command == CommandLineOption.select(layout: nil).command {
 			CommandLineOption.select(layout: value).run()
 		} else {

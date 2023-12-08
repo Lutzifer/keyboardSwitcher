@@ -1,6 +1,8 @@
-build
-xcdebugger
-keyboardSwitcher.xcscheme
-keyboardSwitcher.xcodeproj/xcuserdata
-/keyboardSwitcher.xcodeproj/project.xcworkspace/xcuserdata
-/.DS_Store
+.DS_Store
+/.build
+/Packages
+xcuserdata/
+DerivedData/
+.swiftpm/configuration/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.netrc

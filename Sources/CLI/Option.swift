@@ -1,11 +1,3 @@
-//
-//  Option.swift
-//  keyboardSwitcher
-//
-//  Created by Wolfgang Lutz on 07.10.16.
-//  Copyright © 2016 number42. All rights reserved.
-//
-
 enum CommandLineOption {
 	case list
 	case enabled
