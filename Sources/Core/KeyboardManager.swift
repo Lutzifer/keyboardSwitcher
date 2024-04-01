@@ -5,11 +5,11 @@ class KeyboardManager {
     static let shared = KeyboardManager()
 
     var keyboardLayouts: [KeyboardSource] {
-        sourceList
+        sourceList(includeAllInstalled: true)
     }
 
     var enabledLayouts: [KeyboardSource] {
-        sourceList.filter { $0.enabled }
+        sourceList(includeAllInstalled: false).filter { $0.enabled }
     }
 
     var currentKeyboardLayout: KeyboardSource {
@@ -17,11 +17,11 @@ class KeyboardManager {
     }
 
     func selectLayout(withID layoutID: String) {
-        var sources = keyboardSources(forDictionary: [kTISPropertyInputSourceID as String: layoutID])
+        var sources = keyboardSources(forDictionary: [kTISPropertyInputSourceID as String: layoutID], includeAllInstalled: false)
 
         if sources.isEmpty {
             let shortLayoutID = layoutID.components(separatedBy: ".").last!
-            sources = keyboardSources(forDictionary: [kTISPropertyLocalizedName as String: shortLayoutID])
+            sources = keyboardSources(forDictionary: [kTISPropertyLocalizedName as String: shortLayoutID], includeAllInstalled: false)
         }
 
         if TISSelectInputSource(sources[0].source) != noErr {
@@ -29,20 +29,29 @@ class KeyboardManager {
         }
     }
 
-    private var sourceList: [KeyboardSource] {
-        keyboardLayoutInputSources + inputModeInputSources
+    private func sourceList(includeAllInstalled: Bool) -> [KeyboardSource] {
+        keyboardLayoutInputSources(includeAllInstalled: includeAllInstalled) + inputModeInputSources(includeAllInstalled: includeAllInstalled)
     }
     
-    private var keyboardLayoutInputSources: [KeyboardSource] {
-        keyboardSources(forDictionary: [kTISPropertyInputSourceType as String: kTISTypeKeyboardLayout as String])
+    private func keyboardLayoutInputSources(includeAllInstalled: Bool) -> [KeyboardSource] {
+        keyboardSources(
+            forDictionary: [kTISPropertyInputSourceType as String: kTISTypeKeyboardLayout as String],
+            includeAllInstalled: includeAllInstalled
+        )
     }
     
-    private var inputModeInputSources: [KeyboardSource] {
-        keyboardSources(forDictionary: [kTISPropertyInputSourceType as String: kTISTypeKeyboardInputMode as String])
+    private func inputModeInputSources(includeAllInstalled: Bool) -> [KeyboardSource] {
+        keyboardSources(
+            forDictionary: [kTISPropertyInputSourceType as String: kTISTypeKeyboardInputMode as String],
+            includeAllInstalled: includeAllInstalled
+        )
     }
 
-    private func keyboardSources(forDictionary dictionary: [String: Any]) -> [KeyboardSource] {
-        guard let sources = TISCreateInputSourceList(dictionary as CFDictionary, false)?.takeRetainedValue() as? [TISInputSource] else {
+    private func keyboardSources(forDictionary dictionary: [String: Any], includeAllInstalled: Bool) -> [KeyboardSource] {
+        guard let sources = TISCreateInputSourceList(
+            dictionary as CFDictionary,
+            includeAllInstalled
+        )?.takeRetainedValue() as? [TISInputSource] else {
             return []
         }
         
