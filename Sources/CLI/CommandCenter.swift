@@ -26,15 +26,38 @@ class CommandCenter {
     }
 
     func selectLayout(layout: String) {
-        print("Selecting \(layout)")
-
-        guard let selectedLayout = KeyboardManager.shared.enabledLayouts.first(where: { $0.localizedName == layout }) else {
-            print("not found")
-            return
+        print("Selecting \"\(layout)\"...")
+        if let keyboardSource = KeyboardManager.shared.findKeyboardSource(enabledOnly: true, layoutIdentifier:layout) {
+            KeyboardManager.shared.selectLayout(withSource: keyboardSource)
+        } else {
+            print("Unable to reconcile \"\(layout)\" with a KeyboardSource. May need to enable first.")
         }
-         
-        print("found")
-        KeyboardManager.shared.selectLayout(withID: selectedLayout.inputSourceID)
+    }
+    
+    func enableLayout(layout: String) {
+        print("Enabling \"\(layout)\"...")
+        if let keyboardSource = KeyboardManager.shared.findKeyboardSource(enabledOnly: false, layoutIdentifier:layout) {
+            if keyboardSource.enabled {
+                print("\"\(layout)\" is already enabled.")
+                return
+            }
+            KeyboardManager.shared.enableLayout(withSource: keyboardSource)
+        } else {
+            print("Unable to reconcile \"\(layout)\" with a KeyboardSource.")
+        }
+    }
+    
+    func disableLayout(layout: String) {
+        print("Disabling \"\(layout)\"...")
+        if let keyboardSource = KeyboardManager.shared.findKeyboardSource(enabledOnly: false, layoutIdentifier:layout) {
+            if !keyboardSource.enabled {
+                print("\"\(layout)\" is already disabled.")
+                return
+            }
+            KeyboardManager.shared.disableLayout(withSource: keyboardSource)
+        } else {
+            print("Unable to reconcile \"\(layout)\" with a KeyboardSource.")
+        }
     }
 
     func printJSON() {
