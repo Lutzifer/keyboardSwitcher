@@ -28,6 +28,30 @@ class KeyboardManager {
             print("Failed to set the layout \"\(layoutID)\".")
         }
     }
+    
+    func selectLayout(withSource keyboardSource: KeyboardSource) {
+        if TISSelectInputSource(keyboardSource.source) != noErr {
+            print("Failed to set the layout \"\(keyboardSource.localizedName)\".")
+        } else {
+            print("Successfully set the layout \"\(keyboardSource.localizedName)\".")
+        }
+    }
+    
+    func enableLayout(withSource keyboardSource: KeyboardSource) {
+        if TISEnableInputSource(keyboardSource.source) != noErr {
+            print("Failed to enable the layout \"\(keyboardSource.localizedName)\".")
+        } else {
+            print("Successfully enabled the layout \"\(keyboardSource.localizedName)\".")
+        }
+    }
+    
+    func disableLayout(withSource keyboardSource: KeyboardSource) {
+        if TISDisableInputSource(keyboardSource.source) != noErr {
+            print("Failed to disable the layout \"\(keyboardSource.localizedName)\".")
+        } else {
+            print("Successfully disabled the layout \"\(keyboardSource.localizedName)\".")
+        }
+    }
 
     private func sourceList(includeAllInstalled: Bool) -> [KeyboardSource] {
         keyboardLayoutInputSources(includeAllInstalled: includeAllInstalled) + inputModeInputSources(includeAllInstalled: includeAllInstalled)
