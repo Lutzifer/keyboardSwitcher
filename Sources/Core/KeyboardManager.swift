@@ -11,6 +11,28 @@ class KeyboardManager {
     var enabledLayouts: [KeyboardSource] {
         sourceList(includeAllInstalled: false).filter { $0.enabled }
     }
+    
+    func findKeyboardSource(enabledOnly: Bool, layoutIdentifier: String) -> KeyboardSource? {
+        let eligibleSources: [KeyboardSource] = enabledOnly ? enabledLayouts : keyboardLayouts
+        
+        if let foundLayout = eligibleSources.first(where: { $0.inputSourceID == layoutIdentifier }) {
+            print("FOUND by fully qualified input source id")
+            return foundLayout
+        }
+
+        if let foundLayout = eligibleSources.first(where: { $0.inputSourceID.components(separatedBy: ".").last == layoutIdentifier }) {
+            print("FOUND by shortened input source id")
+            return foundLayout
+        }
+
+        if let foundLayout = eligibleSources.first(where: { $0.localizedName == layoutIdentifier }) {
+            print("FOUND by localized name")
+            return foundLayout
+        }
+
+        print("No keyboard source found for \"\(layoutIdentifier)\".")
+        return nil
+    }
 
     var currentKeyboardLayout: KeyboardSource {
         KeyboardSource(source: TISCopyCurrentKeyboardInputSource().takeRetainedValue())
