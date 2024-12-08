@@ -37,6 +37,10 @@ class CommandLineInterpreter {
 
         if command == CommandLineOption.select(layout: nil).command {
             CommandLineOption.select(layout: value).run()
+        } else if command == CommandLineOption.enable(layout: nil).command {
+            CommandLineOption.enable(layout: value).run()
+        } else if command == CommandLineOption.disable(layout: nil).command {
+            CommandLineOption.disable(layout: value).run()
         } else {
             interpretTwoArguments(arguments: arguments)
         }
