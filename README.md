@@ -9,10 +9,18 @@
 - **select "\<layout\>:** Set the current keyboard layout.
 - **get:** Retrieve the currently active keyboard layout.
 - **version:** Print the version of `keyboardSwitcher`.
+- **enable "\<layout\>:** Enable a layout so it can then be selected.
+- **disable "\<layout\>:** Disable a layout so it can no longer be selected.
 
 ## Limitations
 
-To successfully execute the "select" command, the desired keyboard layout must be added in the macOS Settings app under Keyboard > Sources.
+To successfully execute the `select` command, the desired keyboard layout must first be enabled.
+This can be achieved by:
+- adding the layout in the macOS Settings app under Keyboard > Sources.
+
+OR
+
+- using the `enable` command
 
 ## Possible Usages
 
@@ -97,4 +105,54 @@ Output:
 U.S.
 ```
 
+### Enable and set a Layout
+
+```bash
+enable British-PC
+
+```
+
+Output:
+```plaintext
+Enabling "British-PC"...
+FOUND by shortened input source id
+Successfully enabled the layout "British – PC".
+```
+<br>
+
+```bash
+select British-PC
+
+```
+
+Output:
+```plaintext
+Selecting "British-PC"...
+FOUND by shortened input source id
+Successfully set the layout "British – PC".
+```
+
+> **_NOTE:_**
+> Layouts can be referenced in three different ways. This can be convenient as some keyboard layout localised names contain non-ASCII characters such as the en dash (–).
+> - Fully qualified input source id e.g. `com.apple.keylayout.British-PC`
+> - Shortened input source id e.g. `British-PC`
+> - Localised name `"British – PC"`
+
+
+
+### Disable a Layout
+
+```bash
+disable com.apple.keylayout.British-PC
+
+```
+Output:
+```plaintext
+Disabling "com.apple.keylayout.British-PC"...
+FOUND by fully qualified input source id
+Successfully disabled the layout "British – PC".
+```
+
+
 Feel free to explore the various commands to manage your keyboard layouts efficiently.
+
