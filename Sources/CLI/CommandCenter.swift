@@ -31,6 +31,7 @@ class CommandCenter {
             KeyboardManager.shared.selectLayout(withSource: keyboardSource)
         } else {
             print("Unable to reconcile \"\(layout)\" with a KeyboardSource. May need to enable first.")
+            exit(1)
         }
     }
     
@@ -44,6 +45,7 @@ class CommandCenter {
             KeyboardManager.shared.enableLayout(withSource: keyboardSource)
         } else {
             print("Unable to reconcile \"\(layout)\" with a KeyboardSource.")
+            exit(1)
         }
     }
     
@@ -57,6 +59,7 @@ class CommandCenter {
             KeyboardManager.shared.disableLayout(withSource: keyboardSource)
         } else {
             print("Unable to reconcile \"\(layout)\" with a KeyboardSource.")
+            exit(1)
         }
     }
 

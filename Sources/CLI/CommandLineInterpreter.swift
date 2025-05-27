@@ -25,7 +25,7 @@ class CommandLineInterpreter {
         guard let commandAction = commandMapping[command] else {
             print("Unknown Command: \(command)")
             CommandLineOption.help.run()
-            return
+            exit(1)
         }
 
         commandAction()
