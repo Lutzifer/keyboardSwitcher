@@ -23,7 +23,7 @@ class CommandLineInterpreter {
         let command = arguments[1]
 
         guard let commandAction = commandMapping[command] else {
-            print("Unknown Command: \(command)")
+            fputs("Unknown Command: \(command)\n", stderr)
             CommandLineOption.help.run()
             exit(1)
         }

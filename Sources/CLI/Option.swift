@@ -55,12 +55,12 @@ enum CommandLineOption {
         case .enabled:
             commandCenter.listEnabled()
         case .version:
-            print("Current Version: \(keyboardSwitcherVersion)")
+            fputs("Current Version: \(keyboardSwitcherVersion)\n", stderr)
         case .help:
-            print("A tool to set the KeyboardLayout")
-            print("Available Commands:")
+            fputs("A tool to set the KeyboardLayout\n", stderr)
+            fputs("Available Commands:\n", stderr)
             CommandLineOption.all.forEach { option in
-                print("\t\(option.command): \(option.helptext)")
+                fputs("\t\(option.command): \(option.helptext)\n", stderr)
             }
         case .json:
             commandCenter.printJSON()

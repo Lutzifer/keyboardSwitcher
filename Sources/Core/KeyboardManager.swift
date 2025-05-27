@@ -16,21 +16,21 @@ class KeyboardManager {
         let eligibleSources: [KeyboardSource] = enabledOnly ? enabledLayouts : keyboardLayouts
         
         if let foundLayout = eligibleSources.first(where: { $0.inputSourceID == layoutIdentifier }) {
-            print("FOUND by fully qualified input source id")
+            fputs("FOUND by fully qualified input source id\n", stderr)
             return foundLayout
         }
 
         if let foundLayout = eligibleSources.first(where: { $0.inputSourceID.components(separatedBy: ".").last == layoutIdentifier }) {
-            print("FOUND by shortened input source id")
+            fputs("FOUND by shortened input source id\n", stderr)
             return foundLayout
         }
 
         if let foundLayout = eligibleSources.first(where: { $0.localizedName == layoutIdentifier }) {
-            print("FOUND by localized name")
+            fputs("FOUND by localized name\n", stderr)
             return foundLayout
         }
 
-        print("No keyboard source found for \"\(layoutIdentifier)\".")
+        fputs("No keyboard source found for \"\(layoutIdentifier)\".\n", stderr)
         return nil
     }
 
@@ -47,31 +47,31 @@ class KeyboardManager {
         }
 
         if TISSelectInputSource(sources[0].source) != noErr {
-            print("Failed to set the layout \"\(layoutID)\".")
+            fputs("Failed to set the layout \"\(layoutID)\".\n", stderr)
         }
     }
     
     func selectLayout(withSource keyboardSource: KeyboardSource) {
         if TISSelectInputSource(keyboardSource.source) != noErr {
-            print("Failed to set the layout \"\(keyboardSource.localizedName)\".")
+            fputs("Failed to set the layout \"\(keyboardSource.localizedName)\".\n", stderr)
         } else {
-            print("Successfully set the layout \"\(keyboardSource.localizedName)\".")
+            fputs("Successfully set the layout \"\(keyboardSource.localizedName)\".\n", stderr)
         }
     }
     
     func enableLayout(withSource keyboardSource: KeyboardSource) {
         if TISEnableInputSource(keyboardSource.source) != noErr {
-            print("Failed to enable the layout \"\(keyboardSource.localizedName)\".")
+            fputs("Failed to enable the layout \"\(keyboardSource.localizedName)\".\n", stderr)
         } else {
-            print("Successfully enabled the layout \"\(keyboardSource.localizedName)\".")
+            fputs("Successfully enabled the layout \"\(keyboardSource.localizedName)\".\n", stderr)
         }
     }
     
     func disableLayout(withSource keyboardSource: KeyboardSource) {
         if TISDisableInputSource(keyboardSource.source) != noErr {
-            print("Failed to disable the layout \"\(keyboardSource.localizedName)\".")
+            fputs("Failed to disable the layout \"\(keyboardSource.localizedName)\".\n", stderr)
         } else {
-            print("Successfully disabled the layout \"\(keyboardSource.localizedName)\".")
+            fputs("Successfully disabled the layout \"\(keyboardSource.localizedName)\".\n", stderr)
         }
     }
 
