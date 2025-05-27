@@ -1,3 +1,5 @@
+import Foundation
+
 class CommandLineInterpreter {
     private let commandMapping: [String: () -> Void] = [
         CommandLineOption.list.command: CommandLineOption.list.run,
@@ -5,7 +7,7 @@ class CommandLineInterpreter {
         CommandLineOption.version.command: CommandLineOption.version.run,
         CommandLineOption.get.command: CommandLineOption.get.run,
         CommandLineOption.json.command: CommandLineOption.json.run,
-        CommandLineOption.help.command: CommandLineOption.help.run
+        CommandLineOption.help.command: CommandLineOption.help.run,
     ]
 
     func interpret(arguments: [String]) {
@@ -23,7 +25,7 @@ class CommandLineInterpreter {
         let command = arguments[1]
 
         guard let commandAction = commandMapping[command] else {
-            fputs("Unknown Command: \(command)\n", stderr)
+            printToStdErr("Unknown Command: \(command)")
             CommandLineOption.help.run()
             exit(1)
         }

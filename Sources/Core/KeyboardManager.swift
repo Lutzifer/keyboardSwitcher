@@ -11,26 +11,26 @@ class KeyboardManager {
     var enabledLayouts: [KeyboardSource] {
         sourceList(includeAllInstalled: false).filter { $0.enabled }
     }
-    
+
     func findKeyboardSource(enabledOnly: Bool, layoutIdentifier: String) -> KeyboardSource? {
         let eligibleSources: [KeyboardSource] = enabledOnly ? enabledLayouts : keyboardLayouts
-        
+
         if let foundLayout = eligibleSources.first(where: { $0.inputSourceID == layoutIdentifier }) {
-            fputs("FOUND by fully qualified input source id\n", stderr)
+            printToStdErr("FOUND by fully qualified input source id")
             return foundLayout
         }
 
         if let foundLayout = eligibleSources.first(where: { $0.inputSourceID.components(separatedBy: ".").last == layoutIdentifier }) {
-            fputs("FOUND by shortened input source id\n", stderr)
+            printToStdErr("FOUND by shortened input source id")
             return foundLayout
         }
 
         if let foundLayout = eligibleSources.first(where: { $0.localizedName == layoutIdentifier }) {
-            fputs("FOUND by localized name\n", stderr)
+            printToStdErr("FOUND by localized name")
             return foundLayout
         }
 
-        fputs("No keyboard source found for \"\(layoutIdentifier)\".\n", stderr)
+        printToStdErr("No keyboard source found for \"\(layoutIdentifier)\".")
         return nil
     }
 
@@ -47,45 +47,45 @@ class KeyboardManager {
         }
 
         if TISSelectInputSource(sources[0].source) != noErr {
-            fputs("Failed to set the layout \"\(layoutID)\".\n", stderr)
+            printToStdErr("Failed to set the layout \"\(layoutID)\".")
         }
     }
-    
+
     func selectLayout(withSource keyboardSource: KeyboardSource) {
         if TISSelectInputSource(keyboardSource.source) != noErr {
-            fputs("Failed to set the layout \"\(keyboardSource.localizedName)\".\n", stderr)
+            printToStdErr("Failed to set the layout \"\(keyboardSource.localizedName)\".")
         } else {
-            fputs("Successfully set the layout \"\(keyboardSource.localizedName)\".\n", stderr)
+            printToStdErr("Successfully set the layout \"\(keyboardSource.localizedName)\".")
         }
     }
-    
+
     func enableLayout(withSource keyboardSource: KeyboardSource) {
         if TISEnableInputSource(keyboardSource.source) != noErr {
-            fputs("Failed to enable the layout \"\(keyboardSource.localizedName)\".\n", stderr)
+            printToStdErr("Failed to enable the layout \"\(keyboardSource.localizedName)\".")
         } else {
-            fputs("Successfully enabled the layout \"\(keyboardSource.localizedName)\".\n", stderr)
+            printToStdErr("Successfully enabled the layout \"\(keyboardSource.localizedName)\".")
         }
     }
-    
+
     func disableLayout(withSource keyboardSource: KeyboardSource) {
         if TISDisableInputSource(keyboardSource.source) != noErr {
-            fputs("Failed to disable the layout \"\(keyboardSource.localizedName)\".\n", stderr)
+            printToStdErr("Failed to disable the layout \"\(keyboardSource.localizedName)\".")
         } else {
-            fputs("Successfully disabled the layout \"\(keyboardSource.localizedName)\".\n", stderr)
+            printToStdErr("Successfully disabled the layout \"\(keyboardSource.localizedName)\".")
         }
     }
 
     private func sourceList(includeAllInstalled: Bool) -> [KeyboardSource] {
         keyboardLayoutInputSources(includeAllInstalled: includeAllInstalled) + inputModeInputSources(includeAllInstalled: includeAllInstalled)
     }
-    
+
     private func keyboardLayoutInputSources(includeAllInstalled: Bool) -> [KeyboardSource] {
         keyboardSources(
             forDictionary: [kTISPropertyInputSourceType as String: kTISTypeKeyboardLayout as String],
             includeAllInstalled: includeAllInstalled
         )
     }
-    
+
     private func inputModeInputSources(includeAllInstalled: Bool) -> [KeyboardSource] {
         keyboardSources(
             forDictionary: [kTISPropertyInputSourceType as String: kTISTypeKeyboardInputMode as String],
@@ -100,7 +100,7 @@ class KeyboardManager {
         )?.takeRetainedValue() as? [TISInputSource] else {
             return []
         }
-        
+
         return sources.map(KeyboardSource.init)
     }
 }

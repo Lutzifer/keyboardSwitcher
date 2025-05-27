@@ -3,22 +3,20 @@ import InputMethodKit
 
 class CommandCenter {
     func printLayout() {
-        // Only the layout name goes to stdout
         print(KeyboardManager.shared.currentKeyboardLayout.localizedName)
     }
 
     func listLayouts() {
-        fputs("Available Layouts:\n", stderr)
+        printToStdErr("Available Layouts:")
         printLayouts(layouts: KeyboardManager.shared.keyboardLayouts)
     }
 
     func listEnabled() {
-        fputs("Enabled Layouts:\n", stderr)
+        printToStdErr("Enabled Layouts:")
         printLayouts(layouts: KeyboardManager.shared.enabledLayouts)
     }
 
-    internal func printLayouts(layouts: [KeyboardSource]) {
-        // Only the list of layouts goes to stdout
+    func printLayouts(layouts: [KeyboardSource]) {
         print(
             layouts
                 .map { "\t\($0.localizedName)" }
@@ -28,55 +26,61 @@ class CommandCenter {
     }
 
     func selectLayout(layout: String) {
-        fputs("Selecting \"\(layout)\"...\n", stderr)
-        if let keyboardSource = KeyboardManager.shared.findKeyboardSource(enabledOnly: true, layoutIdentifier:layout) {
+        printToStdErr("Selecting \"\(layout)\"...")
+        if let keyboardSource = KeyboardManager.shared.findKeyboardSource(enabledOnly: true, layoutIdentifier: layout) {
             KeyboardManager.shared.selectLayout(withSource: keyboardSource)
         } else {
-            fputs("Unable to reconcile \"\(layout)\" with a KeyboardSource. May need to enable first.\n", stderr)
-            exit(1)
-        }
-    }
-    
-    func enableLayout(layout: String) {
-        fputs("Enabling \"\(layout)\"...\n", stderr)
-        if let keyboardSource = KeyboardManager.shared.findKeyboardSource(enabledOnly: false, layoutIdentifier:layout) {
-            if keyboardSource.enabled {
-                fputs("\"\(layout)\" is already enabled.\n", stderr)
-                return
-            }
-            KeyboardManager.shared.enableLayout(withSource: keyboardSource)
-        } else {
-            fputs("Unable to reconcile \"\(layout)\" with a KeyboardSource.\n", stderr)
-            exit(1)
-        }
-    }
-    
-    func disableLayout(layout: String) {
-        fputs("Disabling \"\(layout)\"...\n", stderr)
-        if let keyboardSource = KeyboardManager.shared.findKeyboardSource(enabledOnly: false, layoutIdentifier:layout) {
-            if !keyboardSource.enabled {
-                fputs("\"\(layout)\" is already disabled.\n", stderr)
-                return
-            }
-            KeyboardManager.shared.disableLayout(withSource: keyboardSource)
-        } else {
-            fputs("Unable to reconcile \"\(layout)\" with a KeyboardSource.\n", stderr)
+            printToStdErr("Unable to reconcile \"\(layout)\" with a KeyboardSource. May need to enable first.")
             exit(1)
         }
     }
 
+    func enableLayout(layout: String) {
+        printToStdErr("Enabling \"\(layout)\"...")
+
+        guard let keyboardSource = KeyboardManager.shared.findKeyboardSource(enabledOnly: false, layoutIdentifier: layout) else {
+            printToStdErr("Unable to reconcile \"\(layout)\" with a KeyboardSource.")
+            exit(1)
+        }
+
+        if keyboardSource.enabled {
+            printToStdErr("\"\(layout)\" is already enabled.")
+            return
+        }
+
+        KeyboardManager.shared.enableLayout(withSource: keyboardSource)
+    }
+
+    func disableLayout(layout: String) {
+        printToStdErr("Disabling \"\(layout)\"...")
+
+        guard let keyboardSource = KeyboardManager.shared.findKeyboardSource(enabledOnly: false, layoutIdentifier: layout) else {
+            printToStdErr("Unable to reconcile \"\(layout)\" with a KeyboardSource.")
+            exit(1)
+        }
+
+        if !keyboardSource.enabled {
+            printToStdErr("\"\(layout)\" is already disabled.")
+            return
+        }
+
+        KeyboardManager.shared.disableLayout(withSource: keyboardSource)
+    }
+
     func printJSON() {
         do {
-            guard let jsonString = String(
-                data: try JSONEncoder().encode(KeyboardManager.shared.enabledLayouts),
+            guard let jsonString = try String(
+                data: JSONEncoder().encode(KeyboardManager.shared.enabledLayouts),
                 encoding: .utf8
             ) else {
-                fputs("Error converting JSON data to string\n", stderr)
-                return
+                printToStdErr("Error converting JSON data to string")
+                exit(1)
             }
+
             print(jsonString)
         } catch {
-            fputs("Error encoding JSON: \(error)\n", stderr)
+            printToStdErr("Error encoding JSON: \(error)")
+            exit(1)
         }
     }
 }

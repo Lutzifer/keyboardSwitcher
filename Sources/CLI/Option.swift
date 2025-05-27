@@ -1,3 +1,5 @@
+import Foundation
+
 enum CommandLineOption {
     case list
     case enabled
@@ -20,7 +22,6 @@ enum CommandLineOption {
         default:
             String(describing: self).lowercased()
         }
-        
     }
 
     var helptext: String {
@@ -55,24 +56,24 @@ enum CommandLineOption {
         case .enabled:
             commandCenter.listEnabled()
         case .version:
-            fputs("Current Version: \(keyboardSwitcherVersion)\n", stderr)
+            printToStdErr("Current Version: \(keyboardSwitcherVersion)")
         case .help:
-            fputs("A tool to set the KeyboardLayout\n", stderr)
-            fputs("Available Commands:\n", stderr)
-            CommandLineOption.all.forEach { option in
-                fputs("\t\(option.command): \(option.helptext)\n", stderr)
+            printToStdErr("A tool to set the KeyboardLayout")
+            printToStdErr("Available Commands:")
+            for option in CommandLineOption.all {
+                printToStdErr("\t\(option.command): \(option.helptext)")
             }
         case .json:
             commandCenter.printJSON()
-        case .select(let layout):
+        case let .select(layout):
             if let layout = layout {
                 commandCenter.selectLayout(layout: layout)
             }
-        case .enable(let layout):
+        case let .enable(layout):
             if let layout = layout {
                 commandCenter.enableLayout(layout: layout)
             }
-        case .disable(let layout):
+        case let .disable(layout):
             if let layout = layout {
                 commandCenter.disableLayout(layout: layout)
             }
