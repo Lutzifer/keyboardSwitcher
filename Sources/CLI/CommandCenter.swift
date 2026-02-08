@@ -19,7 +19,7 @@ class CommandCenter {
   func printLayouts(layouts: [KeyboardSource]) {
     print(
       layouts
-        .map { "\t\($0.localizedName)" }
+        .map { "\t\($0.displayName)" }
         .sorted()
         .joined(separator: "\n")
     )
@@ -27,6 +27,7 @@ class CommandCenter {
 
   func selectLayout(layout: String) {
     printToStdErr("Selecting \"\(layout)\"...")
+      
     if let keyboardSource = KeyboardManager.shared.findKeyboardSource(
       enabledOnly: true, layoutIdentifier: layout)
     {

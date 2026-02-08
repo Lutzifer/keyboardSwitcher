@@ -21,15 +21,23 @@ final class KeyboardManager: Sendable {
     }
 
     if let foundLayout = eligibleSources.first(where: {
-      $0.inputSourceID.components(separatedBy: ".").last == layoutIdentifier
+        $0.inputSourceID.components(separatedBy: ".").last == layoutIdentifier
     }) {
       printToStdErr("FOUND by shortened input source id")
-      return foundLayout
+
+        return foundLayout
     }
 
     if let foundLayout = eligibleSources.first(where: { $0.localizedName == layoutIdentifier }) {
       printToStdErr("FOUND by localized name")
-      return foundLayout
+
+        return foundLayout
+    }
+      
+      if let foundLayout = eligibleSources.first(where: { $0.displayName.hasPrefix(layoutIdentifier) }) {
+      printToStdErr("FOUND by prefix of displayed name")
+
+    return foundLayout
     }
 
     printToStdErr("No keyboard source found for \"\(layoutIdentifier)\".")
@@ -58,25 +66,25 @@ final class KeyboardManager: Sendable {
 
   func selectLayout(withSource keyboardSource: KeyboardSource) {
     if TISSelectInputSource(keyboardSource.source) != noErr {
-      printToStdErr("Failed to set the layout \"\(keyboardSource.localizedName)\".")
+      printToStdErr("Failed to set the layout \"\(keyboardSource.displayName)\".")
     } else {
-      printToStdErr("Successfully set the layout \"\(keyboardSource.localizedName)\".")
+      printToStdErr("Successfully set the layout \"\(keyboardSource.displayName)\".")
     }
   }
 
   func enableLayout(withSource keyboardSource: KeyboardSource) {
     if TISEnableInputSource(keyboardSource.source) != noErr {
-      printToStdErr("Failed to enable the layout \"\(keyboardSource.localizedName)\".")
+      printToStdErr("Failed to enable the layout \"\(keyboardSource.displayName)\".")
     } else {
-      printToStdErr("Successfully enabled the layout \"\(keyboardSource.localizedName)\".")
+      printToStdErr("Successfully enabled the layout \"\(keyboardSource.displayName)\".")
     }
   }
 
   func disableLayout(withSource keyboardSource: KeyboardSource) {
     if TISDisableInputSource(keyboardSource.source) != noErr {
-      printToStdErr("Failed to disable the layout \"\(keyboardSource.localizedName)\".")
+      printToStdErr("Failed to disable the layout \"\(keyboardSource.displayName)\".")
     } else {
-      printToStdErr("Successfully disabled the layout \"\(keyboardSource.localizedName)\".")
+      printToStdErr("Successfully disabled the layout \"\(keyboardSource.displayName)\".")
     }
   }
 
