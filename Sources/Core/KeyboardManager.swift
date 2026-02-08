@@ -1,7 +1,7 @@
 import Foundation
 import InputMethodKit
 
-class KeyboardManager {
+final class KeyboardManager: Sendable {
   static let shared = KeyboardManager()
 
   var keyboardLayouts: [KeyboardSource] {
