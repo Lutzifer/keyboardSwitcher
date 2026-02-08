@@ -27,7 +27,7 @@ class CommandCenter {
 
   func selectLayout(layout: String) {
     printToStdErr("Selecting \"\(layout)\"...")
-      
+
     if let keyboardSource = KeyboardManager.shared.findKeyboardSource(
       enabledOnly: true, layoutIdentifier: layout)
     {

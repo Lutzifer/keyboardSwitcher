@@ -21,23 +21,24 @@ final class KeyboardManager: Sendable {
     }
 
     if let foundLayout = eligibleSources.first(where: {
-        $0.inputSourceID.components(separatedBy: ".").last == layoutIdentifier
+      $0.inputSourceID.components(separatedBy: ".").last == layoutIdentifier
     }) {
       printToStdErr("FOUND by shortened input source id")
 
-        return foundLayout
+      return foundLayout
     }
 
     if let foundLayout = eligibleSources.first(where: { $0.localizedName == layoutIdentifier }) {
       printToStdErr("FOUND by localized name")
 
-        return foundLayout
+      return foundLayout
     }
-      
-      if let foundLayout = eligibleSources.first(where: { $0.displayName.hasPrefix(layoutIdentifier) }) {
+
+    if let foundLayout = eligibleSources.first(where: { $0.displayName.hasPrefix(layoutIdentifier) }
+    ) {
       printToStdErr("FOUND by prefix of displayed name")
 
-    return foundLayout
+      return foundLayout
     }
 
     printToStdErr("No keyboard source found for \"\(layoutIdentifier)\".")

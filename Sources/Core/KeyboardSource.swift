@@ -31,10 +31,10 @@ struct KeyboardSource: Encodable {
   var enabled: Bool {
     getBool(forProperty: kTISPropertyInputSourceIsEnabled)
   }
-    
-    var displayName: String {
-     "\(localizedName) (\(inputSourceID))"
-    }
+
+  var displayName: String {
+    "\(localizedName) (\(inputSourceID))"
+  }
 
   private func getString(forProperty property: CFString) -> String {
     Unmanaged<CFString>.fromOpaque(TISGetInputSourceProperty(source, property))
