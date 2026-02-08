@@ -2,43 +2,50 @@ import Foundation
 import InputMethodKit
 
 struct KeyboardSource: Encodable {
-    enum CodingKeys: String, CodingKey {
-        case title
-        case arg
-    }
+  enum CodingKeys: String, CodingKey {
+    case title
+    case arg
+  }
 
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
+  func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
 
-        try container.encode(localizedName, forKey: .title)
-        try container.encode(localizedName, forKey: .arg)
-    }
+    try container.encode(localizedName, forKey: .title)
+    try container.encode(localizedName, forKey: .arg)
+  }
 
-    let source: TISInputSource
+  let source: TISInputSource
 
-    init(source: TISInputSource) {
-        self.source = source
-    }
+  init(source: TISInputSource) {
+    self.source = source
+  }
 
-    var localizedName: String {
-        getString(forProperty: kTISPropertyLocalizedName)
-    }
+  var localizedName: String {
+    getString(forProperty: kTISPropertyLocalizedName)
+  }
 
-    var inputSourceID: String {
-        getString(forProperty: kTISPropertyInputSourceID)
-    }
+  var inputSourceID: String {
+    getString(forProperty: kTISPropertyInputSourceID)
+  }
 
-    var enabled: Bool {
-        getBool(forProperty: kTISPropertyInputSourceIsEnabled)
-    }
+  var enabled: Bool {
+    getBool(forProperty: kTISPropertyInputSourceIsEnabled)
+  }
 
-    private func getString(forProperty property: CFString) -> String {
-        Unmanaged<CFString>.fromOpaque(TISGetInputSourceProperty(source, property)).takeUnretainedValue() as String
-    }
+  var displayName: String {
+    "\(localizedName) (\(inputSourceID))"
+  }
 
-    private func getBool(forProperty property: CFString) -> Bool {
-        let enabled = Unmanaged<NSNumber>.fromOpaque(TISGetInputSourceProperty(source, property)).takeUnretainedValue() as NSNumber
+  private func getString(forProperty property: CFString) -> String {
+    Unmanaged<CFString>.fromOpaque(TISGetInputSourceProperty(source, property))
+      .takeUnretainedValue() as String
+  }
 
-        return enabled.boolValue
-    }
+  private func getBool(forProperty property: CFString) -> Bool {
+    let enabled =
+      Unmanaged<NSNumber>.fromOpaque(TISGetInputSourceProperty(source, property))
+      .takeUnretainedValue() as NSNumber
+
+    return enabled.boolValue
+  }
 }

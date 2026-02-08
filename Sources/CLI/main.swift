@@ -1,10 +1,10 @@
 import Foundation
 
 func printToStdErr(_ message: String) {
-    fputs("\(message)\n", stderr)
+  fputs("\(message)\n", stderr)
 }
 
 CommandLineInterpreter()
-    .interpret(
-        arguments: CommandLine.arguments
-    )
+  .interpret(
+    arguments: CommandLine.arguments
+  )

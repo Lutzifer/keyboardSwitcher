@@ -1,1 +1,1 @@
-let keyboardSwitcherVersion = "2.0.0"
+let keyboardSwitcherVersion = "2.4.0"
