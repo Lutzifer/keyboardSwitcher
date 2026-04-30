@@ -40,6 +40,17 @@ brew install lutzifer/homebrew-tap/keyboardSwitcher
 mint install lutzifer/keyboardSwitcher
 ```
 
+### Rust version
+
+A Rust implementation is available in `rust/`.
+
+Build and run:
+
+```bash
+cd rust
+cargo run -- list
+```
+
 ## Use with Alfred
 
 Download the Alfred workflow from the [releases page](https://github.com/Lutzifer/keyboardSwitcher/releases/tag/0.0.4) and use commands like "eng" and "ger" to swiftly change the keyboard layout.
@@ -155,4 +166,3 @@ Successfully disabled the layout "British – PC".
 
 
 Feel free to explore the various commands to manage your keyboard layouts efficiently.
-
